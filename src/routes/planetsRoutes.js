@@ -38,6 +38,19 @@ router.post("/", async (req,res) => {
     }
 });
 
+router.delete("/:postID", async (req,res) =>
+{
+    try
+    {
+        const removedPostGot = await planetModel.remove({_id: req.params.postID});
+        res.json(removedPostGot)
+
+    }
+    catch(err)
+    {
+        res.json({message: err})
+    }
+})
 router.get("/planets")
 
 export const planetsRoutes = router;
