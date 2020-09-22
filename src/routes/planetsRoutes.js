@@ -1,5 +1,5 @@
 import express from "express"
-import {planetsController} from "../controllers/planets.js";
+import {planetsController} from "../controllers/planetsController.js";
 import axios from "axios";
 import {planetSchema, planetModel} from "../model/planetModel.js"
 import mongodb from "mongodb"

@@ -1,6 +1,6 @@
 import express from "express";
 import configuration from "./config/index.js"
-import {planetsController} from "./controllers/planets.js";
+import {planetsController} from "./controllers/planetsController.js";
 import axios from "axios";
 import {planetsRoutes} from "./routes/planetsRoutes.js"; 
 import mongoose from 'mongoose';
