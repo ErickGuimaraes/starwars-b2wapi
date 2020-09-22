@@ -1,18 +1,22 @@
 
 import configuration from "../config/index.js";
-import exrpess from "express";
+import exrpress from "express";
 import axios from "axios";
 import {planetModel} from "../model/planetModel.js"
 
-const router = exrpess.Router();
+const router = exrpress.Router();
 
-export const getAllPlanets = async (req,res) =>
+export const getPlanets = async (req,res) =>
 {
     try
     {
-        const postGot = await planetModel.find();
+      const qpar = {}
+      if(req.query.name)
+      {
+        qpar.name = req.query.name
+      }
+        const postGot = await planetModel.find(qpar);
         res.json(postGot)
-
     }
     catch(err)
     {
@@ -22,13 +26,13 @@ export const getAllPlanets = async (req,res) =>
 
 export const createPlanet = async (req, res) => {
 
-
   const newPlanet  = new planetModel(
     {
         name: req.body.name,
         climate: req.body.climate,
         terrain: req.body.terrain,
     });
+    
     try{
 
       const api = await axios.get(`${configuration.API_URL}planets/?search=${newPlanet.name}`);
@@ -41,9 +45,17 @@ export const createPlanet = async (req, res) => {
       }
       console.log(api.data.results[0].films.length)
 
-    const savePlantet = await newPlanet.save()
+      const existentPlanet = await planetModel.findOne({name: newPlanet.name})
 
-    res.json(savePlantet)
+      if(existentPlanet == null)
+      {
+        const savePlantet = await newPlanet.save();
+        res.json(savePlantet)
+      }
+      else
+      {
+        console.log("naaaaao")
+      }
     }
     catch(err)
     {
@@ -51,18 +63,6 @@ export const createPlanet = async (req, res) => {
     }
 };
 
-export const findByName = async (req,res) =>
-{
-    try
-    {
-        const postGot = await planetModel.find({name: req.params.name});
-        res.json(postGot)
-    }
-    catch(err)
-    {
-        res.json({message: err})
-    }
-};
 
 
 export const findById = async (req,res) =>

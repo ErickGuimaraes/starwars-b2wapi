@@ -1,23 +1,16 @@
 import axios from "axios"
-class Api{
-  static async getPlanets(planet)
- {
-     const res =  (await axios.get(`https://swapi.dev/api/planets/?search=${planet}`)).data;
-     const mit = JSON.parse(res);
-     console.log(mit)
-     console.log("ok");
- }
- }
 
+const varController = async function Start()
+{
+    const api = await returnJson('Tatooine')
+    const nom = api.data.results[0].name;
+    const film = api.data.results[0].films;
+    console.log(api.data.results[0]);
+    console.log(nom + "  " + film.length) 
 
-export const planetsController  = {
-
-
-
-  
-//  async list(request, response)
-//  {
-//    return response.json({})
-//  }
-
-};
+}
+async function SeturnJson(planetName)
+{
+    const res = await axios.get(`https://swapi.dev/api/planets/?search=${planetName}`);
+    return res;
+}

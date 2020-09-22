@@ -19,8 +19,9 @@ const planetSchema = mongoose.Schema(
       {
         type: Number,
         default: 0
-      }
-    }
+      },
+    },
+    { versionKey: false }
   );
   
   const planetModel = mongoose.model("Planet", planetSchema);

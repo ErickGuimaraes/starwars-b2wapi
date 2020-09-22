@@ -5,21 +5,20 @@ import {planetSchema, planetModel} from "../model/planetModel.js"
 import mongodb from "mongodb"
 import {
     createPlanet, 
-    getAllPlanets, 
-    findByName,
+    getPlanets, 
     findById,
     deletePlanet} from "../services/planetServices.js"
 
 const router = express.Router();
 
-router.get("/", getAllPlanets);
+router.get("/", getPlanets);
 
-router.get("/:name", findByName);
+//router.get("/", findByName);
 
-router.get("/:getId", findById)
+router.get("/:ID", findById)
 
 router.post("/", createPlanet);
 
-router.delete("/:postID", deletePlanet);
+router.delete("/:ID", deletePlanet);
 
 export const planetsRoutes = router;
