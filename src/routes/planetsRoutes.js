@@ -2,6 +2,7 @@ import express from "express"
 import {planetsController} from "../controllers/planets.js";
 import axios from "axios";
 import {planetSchema, planetModel} from "../model/planetModel.js"
+import mongodb from "mongodb"
 
 const router = express.Router();
 
@@ -18,6 +19,24 @@ router.get("/", async (req,res) =>
         res.json({message: err})
     }
 });
+
+router.get("/:name", async (req,res) =>
+{
+
+    try
+    {
+
+
+        const postGot = await planetModel.find({name: req.params.name});
+        res.json(postGot)
+
+    }
+    catch(err)
+    {
+        res.json({message: err})
+    }
+})
+
 
 router.post("/", async (req,res) => {
 
