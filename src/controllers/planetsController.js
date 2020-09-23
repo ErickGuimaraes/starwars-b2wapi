@@ -13,11 +13,11 @@ const getPlanetsController = async (req,res) =>
     }
     catch(err){
         console.log(err);
-        //return res.staus(err.statusCode || 500).json(
-            //{
-                //error: err.name,
-                //message: err.message
-            //})
+        return res.staus(err.statusCode || 500).json(
+           {
+                error: err.name,
+                message: err.message
+           })
     }
 };
  
