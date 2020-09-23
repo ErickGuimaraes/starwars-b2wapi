@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const planetSchema = mongoose.Schema(
     {
@@ -26,4 +26,4 @@ const planetSchema = mongoose.Schema(
   
   const planetModel = mongoose.model("Planet", planetSchema);
   
-  export {planetSchema, planetModel};
+  module.exports = {planetSchema, planetModel};

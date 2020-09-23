@@ -1,14 +1,14 @@
-import express from "express"
-import {getPlanets, createPlanet, findById, deletePlanet} from "../controllers/planetsController.js";
+const express = require("express")
+const {getPlanets, createPlanet, findById, deletePlanet} = require ( "../controllers/planetsController.js");
 
 const router = express.Router();
 
-router.get("/", getPlanets);
+router.get("/planets", getPlanets);
 
-router.get("/:ID", findById)
+router.get("/planets/:ID", findById)
 
-router.post("/", createPlanet);
+router.post("/planets", createPlanet);
 
-router.delete("/:ID", deletePlanet);
+router.delete("/planets/:ID", deletePlanet);
 
-export const planetsRoutes = router;
+module.exports = router;

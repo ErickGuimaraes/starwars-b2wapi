@@ -1,14 +1,13 @@
-
-import configuration from "../config/index.js";
-import exrpress from "express";
-import axios from "axios";
-import NotFoundError from "../errors/not-found-error.js"
-import ValidationError from "../errors/validation-error.js"
-import {planetModel, planetSchema} from "../model/planetModel.js"
+const configuration = require ("../config/index.js");
+const exrpress = require("express");
+const axios = require ("axios");
+const NotFoundError = require ("../errors/not-found-error.js")
+const ValidationError = require ("../errors/validation-error.js")
+const {planetModel, planetSchema} = require ("../model/planetModel.js")
 
 const router = exrpress.Router();
 
-export async function getPlanetsService(planetName)
+async function getPlanetsService(planetName)
 {
   const queryParam = {}
   
@@ -25,7 +24,7 @@ export async function getPlanetsService(planetName)
   return planetsGot
 };
 
-export async function createPlanetService(data)
+async function createPlanetService(data)
 {
   const {name} = data
 
@@ -44,7 +43,7 @@ export async function createPlanetService(data)
   return savePlantet;
 }
 
-export async function findByIdService(ID)
+async function findByIdService(ID)
 {
   const planetReceived = await planetModel.findById(ID);
 
@@ -56,7 +55,7 @@ export async function findByIdService(ID)
     return planetReceived
 };
 
-export async function deletePlanetService(ID) 
+async function deletePlanetService(ID) 
 {
 
       const removedPlanet = await planetModel.remove({_id: ID});
@@ -66,3 +65,5 @@ export async function deletePlanetService(ID)
       }
       return (removedPlanet)
 };
+
+module.exports ={deletePlanetService, findByIdService, createPlanetService, getPlanetsService}

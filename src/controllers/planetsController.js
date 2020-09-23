@@ -1,16 +1,16 @@
-import { createPlanetService,
+const { createPlanetService,
     getPlanetsService,
     findByIdService,
     deletePlanetService
-} from "../services/planetServices.js"
+} = require ("../services/planetServices.js")
 
-export const getPlanets = async (req,res) =>
+const getPlanets = async (req,res) =>
 {
     try
     {
         const planetsRes = await getPlanetsService(req.query)
 
-        return  res.status(200).json(planetsRes);
+        return  res.status(200).json(planets);
     }
     catch(err){
         console.log(err);
@@ -22,7 +22,7 @@ export const getPlanets = async (req,res) =>
     }
 };
  
-export const createPlanet = async (req,res) =>
+const createPlanet = async (req,res) =>
 {
     try
     {
@@ -44,7 +44,7 @@ export const createPlanet = async (req,res) =>
     }
 }
 
-export const findById = async (req,res) =>
+const findById = async (req,res) =>
 {
     try
     {
@@ -64,7 +64,7 @@ export const findById = async (req,res) =>
     }
 };
 
-export const deletePlanet = async(req,res) =>
+const deletePlanet = async(req,res) =>
 {
     try
 {
@@ -82,3 +82,4 @@ catch(err)
        })
 }
 };
+module.exports = {deletePlanet, findById, createPlanet, getPlanets}
