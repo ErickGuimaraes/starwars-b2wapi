@@ -1,9 +1,7 @@
 import express from "express";
 import configuration from "./config/index.js"
-import axios from "axios";
 import {planetsRoutes} from "./routes/planetsRoutes.js"; 
-import mongoose from 'mongoose';
-import {dbConnection} from './db/index.js';
+
 
 //MIDDLEWARE
 const app = express();

@@ -1,5 +1,3 @@
-import {planetModel} from "../model/planetModel.js"
-
 import { createPlanetService,
     getPlanetsService,
     findByIdService,
