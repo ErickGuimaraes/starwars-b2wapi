@@ -1,6 +1,5 @@
 import express from "express";
 import configuration from "./config/index.js"
-import {getPlanetsController} from "./controllers/planetsController.js";
 import axios from "axios";
 import {planetsRoutes} from "./routes/planetsRoutes.js"; 
 import mongoose from 'mongoose';
@@ -15,6 +14,7 @@ app.use("/planets", planetsRoutes);
 
 app.get("/", (req, res) =>
 {
+  console.log(res.status(200).json({ok: "ok"}))
   res.send("Test Planets");
 
 });

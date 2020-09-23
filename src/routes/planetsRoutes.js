@@ -1,16 +1,12 @@
 import express from "express"
-import {getPlanetsController} from "../controllers/planetsController.js";
+import {getPlanets, createPlanet, findById, deletePlanet} from "../controllers/planetsController.js";
 import axios from "axios";
 import {planetSchema, planetModel} from "../model/planetModel.js"
-import {
-    createPlanet, 
-    getPlanets, 
-    findById,
-    deletePlanet} from "../services/planetServices.js"
+
 
 const router = express.Router();
 
-router.get("/", getPlanetsController);
+router.get("/", getPlanets);
 
 router.get("/:ID", findById)
 

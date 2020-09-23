@@ -7,5 +7,5 @@ class ValidationError extends Error {
     }
   }
   
-  module.exports = ValidationError
+  export default ValidationError
   

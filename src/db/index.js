@@ -1,10 +1,13 @@
-import mongoose from "mongoose";
 import dotenv from "dotenv"
+import mongoose from "mongoose";
 
-dotenv.config({path: './.env'});
 
+//const result = dotenv.config({path: `./.env'`});
 
-export const  dbConnection = mongoose.connect(process.env.DB_CONNECTION,
+//console.log(__dirname)
+//console.log(__filename)
+
+export const  dbConnection = mongoose.connect("mongodb+srv://erick:12349876zxy@cluster0.jyz0i.mongodb.net/starwarsapi?retryWrites=true&w=majority",
   {
     useNewUrlParser: true, 
     useUnifiedTopology: true} ,

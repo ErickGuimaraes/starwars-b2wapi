@@ -3,11 +3,12 @@ import configuration from "../config/index.js";
 import exrpress from "express";
 import axios from "axios";
 import NotFoundError from "../errors/not-found-error.js"
+import ValidationError from "../errors/validation-error.js"
 import {planetModel, planetSchema} from "../model/planetModel.js"
 
 const router = exrpress.Router();
 
-export async function getPlanets(planetName)
+export async function getPlanetsService(planetName)
 {
   const queryParam = {}
   
@@ -42,92 +43,97 @@ export async function getPlanets(planetName)
 //    }
 //};
 
+export async function createPlanetService(model)
+{
+   const swapi = await axios.get(`${configuration.API_URL}planets/?search=${model.name}`);
+  
+  if(swapi.data.results.length > 0)
+  {
+    model.film_appearances =  swapi.data.results[0].films.length;
+  }
+  const existentPlanet = await planetModel.findOne({name: model.name})
 
-export const createPlanet = async (req, res) => {
+  if(existentPlanet == null)
+  {
+    const savePlantet =  planetModel.create(model)
+  }
+  else
+  {
+    throw new ValidationError({message: `Planet ${model.name} has already been created`})
+  }
+  return savePlantet;
+}
 
-  const newPlanet  = new planetModel(
-    {
-        name: req.body.name,
-        climate: req.body.climate,
-        terrain: req.body.terrain,
-    });
+// export const createPlanet = async (req, res) => {
+
+//   const newPlanet  = new planetModel(
+//     {
+//         name: req.body.name,
+//         climate: req.body.climate,
+//         terrain: req.body.terrain,
+//     });
     
-    try{
+//     try{
 
-      const api = await axios.get(`${configuration.API_URL}planets/?search=${newPlanet.name}`);
-      const totalFilms = 0;
+//       const api = await axios.get(`${configuration.API_URL}planets/?search=${newPlanet.name}`);
       
-      console.log(api.data.results[0])
-      if(api.data.results.length > 0)
-      {
-        newPlanet.film_appearances =  api.data.results[0].films.length;
-      }
-      console.log(api.data.results[0].films.length)
+//       if(api.data.results.length > 0)
+//       {
+//         newPlanet.film_appearances =  api.data.results[0].films.length;
+//       }
+//       console.log(api.data.results[0].films.length)
 
-      const existentPlanet = await planetModel.findOne({name: newPlanet.name})
+//       const existentPlanet = await planetModel.findOne({name: newPlanet.name})
 
-      if(existentPlanet == null)
-      {
-        const savePlantet = await newPlanet.save();
-        res.json(savePlantet)
-      }
-      else
-      {
-        console.log("naaaaao")
-      }
-    }
-    catch(err)
+//       if(existentPlanet == null)
+//       {
+//         const savePlantet = await newPlanet.save();
+//         res.json(savePlantet)
+//       }
+//       else
+//       {
+//         console.log("naaaaao")
+//       }
+//     }
+//     catch(err)
+//     {
+//         res.status(500).send(err);
+//     }
+// };
+
+export async function findByIdService(ID)
+{
+
+  const planetReceived = await planetModel.findById(ID);
+
+    if(planetReceived == null)
     {
-        res.status(500).send(err);
+      throw new NotFoundError({message: `ID ${ID} not found`})
     }
+
+    return planetReceived
 };
 
+// export const findByIdService = async (req,res) =>
+// {
+//     try
+//     {
+//         const postGot = await planetModel.findById(req.params.getId);
+//         res.json(postGot);
+//     }
+//     catch(err)
+//     {
+//         res.json({message: err})
+//     }
+// };
 
-
-export const findById = async (req,res) =>
+export async function deletePlanetService(ID) 
 {
-    try
-    {
-        const postGot = await planetModel.findById(req.params.getId);
-        res.json(postGot);
-    }
-    catch(err)
-    {
-        res.json({message: err})
-    }
+
+      const removedPlanet = await planetModel.remove({_id: ID});
+      if(!removedPlanet)
+      {
+        throw new NotFoundError({message: `ID ${ID} not found`})
+      }
+      return (removedPlanet)
 };
-
-export const deletePlanet = async(req,res) => 
-{
-  try
-  {
-      const removedPostGot = await planetModel.remove({_id: req.params.postID});
-      res.json(removedPostGot)
-
-  }
-  catch(err)
-  {
-      res.json({message: err})
-  }
-};
-
-async function SeturnJson(planetName)
-{
-  const res = await axios.get(`${configuration.API_URL}/planets/?search=${planetName}`);
-  console.log(res);
-  return res;
-}
-
-const varController = async function Start()
-{
-    const api = await returnJson('Tatooine')
-    const nom = api.data.results[0].name;
-    const film = api.data.results[0].films;
-    console.log(api.data.results[0]);
-    console.log(nom + "  " + film.length) 
-
-}
-
-
-
-
