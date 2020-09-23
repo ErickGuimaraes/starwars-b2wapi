@@ -1,8 +1,7 @@
 import express from "express"
-import {planetsController} from "../controllers/planetsController.js";
+import {getPlanetsController} from "../controllers/planetsController.js";
 import axios from "axios";
 import {planetSchema, planetModel} from "../model/planetModel.js"
-import mongodb from "mongodb"
 import {
     createPlanet, 
     getPlanets, 
@@ -12,8 +11,6 @@ import {
 const router = express.Router();
 
 router.get("/", getPlanets);
-
-//router.get("/", findByName);
 
 router.get("/:ID", findById)
 

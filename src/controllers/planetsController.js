@@ -1,16 +1,22 @@
-import axios from "axios"
+import express from "express"
+import { 
+    getPlanets} from "../services/planetServices.js"
 
-const varController = async function Start()
+const getPlanetsController = async (req,res) =>
 {
-    const api = await returnJson('Tatooine')
-    const nom = api.data.results[0].name;
-    const film = api.data.results[0].films;
-    console.log(api.data.results[0]);
-    console.log(nom + "  " + film.length) 
-
-}
-async function SeturnJson(planetName)
-{
-    const res = await axios.get(`https://swapi.dev/api/planets/?search=${planetName}`);
-    return res;
-}
+    try
+    {
+        const planetName = req.query.name
+        const planetsRes = await getPlanets(planetName)
+        return res.staus(200).json(planetsRes)
+    }
+    catch(err){
+        return res.staus(err.statusCode || 500).json(
+            {
+                error: err.name,
+                message: err.message
+            })
+    }
+};
+ 
+export {getPlanetsController}

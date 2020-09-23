@@ -1,12 +1,11 @@
 import express from "express";
 import configuration from "./config/index.js"
-import {planetsController} from "./controllers/planetsController.js";
+import {getPlanetsController} from "./controllers/planetsController.js";
 import axios from "axios";
 import {planetsRoutes} from "./routes/planetsRoutes.js"; 
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
-dotenv.config({path: '../.env'});
 import {dbConnection} from './db/index.js';
+
 
 
 
