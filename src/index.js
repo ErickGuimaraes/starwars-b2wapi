@@ -6,9 +6,6 @@ import {planetsRoutes} from "./routes/planetsRoutes.js";
 import mongoose from 'mongoose';
 import {dbConnection} from './db/index.js';
 
-
-
-
 //MIDDLEWARE
 const app = express();
 

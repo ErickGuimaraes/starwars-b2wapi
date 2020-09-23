@@ -2,27 +2,46 @@
 import configuration from "../config/index.js";
 import exrpress from "express";
 import axios from "axios";
-import {planetModel} from "../model/planetModel.js"
+import NotFoundError from "../errors/not-found-error.js"
+import {planetModel, planetSchema} from "../model/planetModel.js"
 
 const router = exrpress.Router();
 
-export const getPlanets = async (req,res) =>
+export async function getPlanets(planetName)
 {
-    try
-    {
-      const qpar = {}
-      if(req.query.name)
-      {
-        qpar.name = req.query.name
-      }
-        const postGot = await planetModel.find(qpar);
-        res.json(postGot)
-    }
-    catch(err)
-    {
-        res.json({message: err})
-    }
+  const queryParam = {}
+  
+  if(planetName.name != null)
+  {
+    queryParam.name = planetName.name
+  }
+  
+  const planetsGot = await planetModel.find(queryParam)
+  if(!planetsGot)
+  {
+    throw new NotFoundError({message: `Planet ${planetName} not found`})
+  }
+  return planetsGot
 };
+
+//export const getPlanets = async (req,res) =>
+//{
+//    try
+//    {
+//      const qpar = {}
+//      if(req.query.name)
+//      {
+//        qpar.name = req.query.name
+//      }
+//        const postGot = await planetModel.find(qpar);
+//        res.json(postGot)
+//    }
+//    catch(err)
+//    {
+//        res.json({message: err})
+//    }
+//};
+
 
 export const createPlanet = async (req, res) => {
 
@@ -94,7 +113,6 @@ export const deletePlanet = async(req,res) =>
 
 async function SeturnJson(planetName)
 {
-  console.groupCollapsed("bef");
   const res = await axios.get(`${configuration.API_URL}/planets/?search=${planetName}`);
   console.log(res);
   return res;

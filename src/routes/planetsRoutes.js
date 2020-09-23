@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", getPlanets);
+router.get("/", getPlanetsController);
 
 router.get("/:ID", findById)
 
