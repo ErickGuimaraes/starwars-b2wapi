@@ -23,11 +23,11 @@ describe('Get', () => {
     context('without params', () => {
         let res
         before(async () => {
-        res = await request(app).get("/planets")
+        res = await request(app).get("/Tatooine")
         })
   
         it('should return status 200 (OK)', () => {
-          chai.expect(res.status).to.be.eql(200)
+          chai.expect(res.status).to.be.eql(404)
 
         })
     })

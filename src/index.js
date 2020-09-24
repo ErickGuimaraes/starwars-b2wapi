@@ -2,7 +2,7 @@ const { Console } = require("console");
 const express = require("express");
 const configuration = require("./config/index.js")
 const planetsRoutes = require("./routes/planetsRoutes.js");
-const dbConnection = require("./db/index.js")
+//const dbConnection = require("./db/index.js")
 
 //MIDDLEWARE
 const app = express();
