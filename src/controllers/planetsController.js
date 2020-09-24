@@ -29,8 +29,7 @@ const createPlanet = async (req,res) =>
        const {name, climate , terrain} = req.body  
   
         const newPlanet = await createPlanetService({name, climate , terrain})
-        console.log(newPlanet)
-
+        
         return res.status(201).json(newPlanet)
     }
     catch(err)

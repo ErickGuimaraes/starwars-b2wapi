@@ -9,10 +9,6 @@ async function getPlanetsService(planetQuery)
 {
   const queryParam = {}
   
-  console.log(planetQuery)
-  console.log("-----------------")
-  console.log(planetQuery.name)
-
   if(planetQuery.name != null)
   {
     queryParam.name = planetQuery.name
