@@ -18,7 +18,7 @@ app.get("/", (req, res) =>
   `<br> To See all planets go to /Planets with a Get request` + 
   `<br> To See a specific planet go to /planet/ID with a Get request` +
   `<br> To Delete a planet go to /Planets/ID  with a Delete request` + 
-  `<br> To Create a planet send a Post request to /planet/ and send a Json with` +
+  `<br> To Create a planet send a Put request to /planet/ and send a Json with` +
   `<br> <pre>{`+
   `<br>     "name": "Name",`+
   `<br>     "climate": "Climate",`+

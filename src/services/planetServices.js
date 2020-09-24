@@ -27,17 +27,21 @@ async function createPlanetService(data)
 {
   const {name} = data
 
+  const existentPlanet = await planetModel.findOne({name: name})
+  if(existentPlanet != null)
+  {
+    throw new ValidationError({message: `Planet ${name} has already been created`})
+  }
+
   const swapi = await axios.get(`${configuration.API_URL}planets/?search=${name}`);
    
   const planetUpdated = swapi.data.count > 0 ? { ...data, "film_appearances": swapi.data.results[0].films.length} : { ...data, "film_appearances": 0}
 
-  const existentPlanet = await planetModel.findOne({name: name})
-
   const savePlantet =  planetModel.create(planetUpdated)
 
-  if(existentPlanet != null || !savePlantet)
+  if(!savePlantet)
   {
-    throw new ValidationError({message: `Planet ${planetUpdated.name} has already been created`})
+    throw new ValidationError({message: `Planet ${name} has already been created`})
   }
   return savePlantet;
 }
@@ -57,6 +61,7 @@ async function findByIdService(ID)
 async function deletePlanetService(ID) 
 {
 
+  console.log(ID);
       const removedPlanet = await planetModel.remove({_id: ID});
       if(!removedPlanet)
       {
