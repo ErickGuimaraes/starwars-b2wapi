@@ -1,13 +1,8 @@
 const dotenv = require ("dotenv");
 const mongoose = require ("mongoose");
+const configuration = require(`../config/index.js`)
 
-
-//const result = dotenv.config({path: `./.env'`});
-
-//console.log(__dirname)
-//console.log(__filename)
-
-const  dbConnection = mongoose.connect("mongodb+srv://erick:12349876zxy@cluster0.jyz0i.mongodb.net/starwarsapi?retryWrites=true&w=majority",
+const  dbConnection = mongoose.connect(configuration.DB_CONNECTION,
   {
     useNewUrlParser: true, 
     useUnifiedTopology: true} ,

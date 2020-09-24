@@ -1,10 +1,12 @@
 const { Console } = require("console");
 const express = require("express");
 const configuration = require("./config/index.js")
-const planetsRoutes = require("./routes/planetsRoutes.js");
-//const dbConnection = require("./db/index.js")
 
-//MIDDLEWARE
+
+const planetsRoutes = require("./routes/planetsRoutes.js");
+const dbConnection = require("./db/index.js")
+
+console.log(configuration.API_URL);
 const app = express();
 
 app.use(express.json());
