@@ -1,25 +1,28 @@
 const configuration = require ("../config/index.js");
-const exrpress = require("express");
 const axios = require ("axios");
 const NotFoundError = require ("../errors/not-found-error.js")
 const ValidationError = require ("../errors/validation-error.js")
 const {planetModel, planetSchema} = require ("../model/planetModel.js")
 
-const router = exrpress.Router();
 
-async function getPlanetsService(planetName)
+async function getPlanetsService(planetQuery)
 {
   const queryParam = {}
   
-  if(planetName.name != null)
+  console.log(planetQuery)
+  console.log("-----------------")
+  console.log(planetQuery.name)
+
+  if(planetQuery.name != null)
   {
-    queryParam.name = planetName.name
+    queryParam.name = planetQuery.name
   }
   
   const planetsGot = await planetModel.find(queryParam)
+  
   if(!planetsGot)
   {
-    throw new NotFoundError({message: `Planet ${planetName} not found`})
+    throw new NotFoundError({message: `Planet ${planetQuery.name} not found`})
   }
   return planetsGot
 };
