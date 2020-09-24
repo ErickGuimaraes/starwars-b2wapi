@@ -20,11 +20,11 @@ app.get("/", (req, res) =>
   `<br> To Delete a planet go to /Planets/ID  with a Delete request` + 
   `<br> To Create a planet send a Post request to /planet/ and send a Json with` +
   `<br> <pre>{`+
-  `<br>     name: "Name"`+
-  `<br>     climate: "Climate"`+
-  `<br>     terrain: "Terrain"`+
+  `<br>     "name": "Name",`+
+  `<br>     "climate": "Climate",`+
+  `<br>     "terrain": "Terrain"`+
   `<br> }</pre>`+
-  `<br> SearcH Feild: Name (/planets/?name:NameToFind)`
+  `<br> Search Feild: Name (/planets/?name:NameToFind)`
   );
 
 });
