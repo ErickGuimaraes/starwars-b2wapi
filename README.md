@@ -1,50 +1,74 @@
-# starwars-b2wapi
+# StarWars API 🪐
 
-Desenvolvimento para o desafio da b2w em Node.js
+Desenvolvimento para o desafio da B2W Digital. 
 
-Nossos associados são aficionados por Star Wars e com isso, queremos criar um jogo com algumas informações da franquia.
+## ⚙️ Tecnologias
 
+➤ [NodeJS](https://nodejs.org/en/)
 
-Para possibilitar a equipe de front criar essa aplicação, queremos desenvolver uma API que contenha os dados dos planetas.
+➤ [Express](https://expressjs.com/pt-br/)
 
+➤ [Axios](https://github.com/axios/axios)
 
-Requisitos:
+➤ [Mongoose](https://mongoosejs.com/)
 
-- A API deve ser REST
+## 💻 Como Rodar 
+```bash
+# clone o repositório.
+git clone https://github.com/ErickGuimaraes/starwarsb2wapi
+# entre na pasta do projeto
+cd starwarsb2wapi
+# inicie com o yarn para instalar os pacotes.
+yarn
+# para iniciar a aplicação em desenvolvimento.
+yarn start dev
+```
 
-- Para cada planeta, os seguintes dados devem ser obtidos do banco de dados da aplicação, sendo inserido manualmente:
+## API Rest:
 
+### ‣ GET /planets 
+#### FORMATO DA RESPOSTA
+JSON
+#### QUERY
+name (opcional)
 
-Nome
+### ‣ POST /planets 
+#### FORMATO DA RESPOSTA
+JSON
+#### EXEMPLO DA RESPOSTA
+```json
+{
+        "film_appearances": 4,
+        "_id": "5f6c11b9c045195378fa08e4",
+        "name": "Coruscant",
+        "climate": "temperate",
+        "terrain": "cityscape, mountains"
+}
+```
+#### PARAMS
+name (obrigatorio), climate(obrigatorio), terrain (obrigatorio)
 
-Clima
+### ‣ PUT /planets/:id
+#### FORMATO DA RESPOSTA
+JSON
+#### PARAMS
+name(obrigatorio), climate, terrain
 
-Terreno
+### ‣ DELETE /planets/:id
+#### FORMATO DA RESPOSTA
+JSON
 
+## 🔨    Funcionalidades desejadas
 
-- Para cada planeta também devemos ter a quantidade de aparições em filmes, que podem ser obtidas pela API pública do Star Wars: https://swapi.dev/about
+‣ Adicionar um planeta (com nome, clima e terreno)
 
+‣ Listar planetas
 
-Funcionalidades desejadas:
+‣ Buscar por nome
 
-- Adicionar um planeta (com nome, clima e terreno)
+‣ Buscar por ID
 
-- Listar planetas
+‣ Remover planeta
 
-- Buscar por nome
-
-- Buscar por ID
-
-- Remover planeta
-
-
-Linguagem permitida no desafio: Node.JS
-
-
-Bando de dados permitido: noSQL, preferencialmente MongoDB
-
-
-E lembre-se!
-
-    Um bom software é um software bem testado;
-    Essa é a hora de mostrar o que você sabe, quanto mais caprichado, melhor!
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
