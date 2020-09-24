@@ -61,8 +61,7 @@ async function findByIdService(ID)
 async function deletePlanetService(ID) 
 {
 
-  console.log(ID);
-      const removedPlanet = await planetModel.remove({_id: ID});
+      const removedPlanet = await planetModel.deleteOne({_id: ID});
       if(!removedPlanet)
       {
         throw new NotFoundError({message: `ID ${ID} not found`})
