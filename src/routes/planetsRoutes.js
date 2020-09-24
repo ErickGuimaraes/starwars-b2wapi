@@ -9,6 +9,6 @@ router.get("/planets/:ID", findById)
 
 router.put("/planets", createPlanet);
 
-router.delete("planets/:ID", deletePlanet);
+router.delete("/planets/:ID", deletePlanet);
 
 module.exports = router;
