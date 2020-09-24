@@ -15,6 +15,7 @@ app.use(planetsRoutes);
 app.get("/", (req, res) =>
 {
   res.send(`Star wars Api Developed By Erick Oliveira` + 
+<<<<<<< HEAD
   `<br> To Find all planets go to /Planets with a Get request` + 
   `<br> To Find a specific planet go to /planet/ID with a Post request` +
   `<br> To Delete a planet go to /Planets/ID  with a Delete request` + 
@@ -25,6 +26,18 @@ app.get("/", (req, res) =>
   `<br>     "terrain": "Terrain"`+
   `<br> }</pre>`+
   `<br> Search Feild: Name (/planets/?name=NameToFind)`
+=======
+  `<br> To See all planets go to /Planets with a Get request` + 
+  `<br> To See a specific planet go to /planet/ID with a Get request` +
+  `<br> To Delete a planet go to /Planets/ID  with a Delete request` + 
+  `<br> To Create a planet send a Post request to /planet/ and send a Json with` +
+  `<br> <pre>{`+
+  `<br>     name: "Name"`+
+  `<br>     climate: "Climate"`+
+  `<br>     terrain: "Terrain"`+
+  `<br> }</pre>`+
+  `<br> SearcH Feild: Name (/planets/?name:NameToFind)`
+>>>>>>> Creating a txt to explain how api works inside index page
   );
 
 });
