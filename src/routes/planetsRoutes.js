@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/planets", getPlanets);
 
-router.get("/planets/:ID", findById)
+router.post("/planets/:ID", findById)
 
 router.put("/planets", createPlanet);
 
