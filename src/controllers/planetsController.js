@@ -68,7 +68,7 @@ const deletePlanet = async(req,res) =>
 
         console.log("fdfd")
         const planetFound = await deletePlanetService(req.params.ID);
-        return res.status(200).json(planetFound)
+        return res.status(204).json(planetFound)
     
 }
 // const deletePlanet = async(req,res) =>
