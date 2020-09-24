@@ -8,9 +8,12 @@ const getPlanets = async (req,res) =>
 {
     try
     {
+        console.log(req)
         const planetsRes = await getPlanetsService(req.query)
 
-        return  res.status(200).json(planets);
+        console.log(planetsRes)
+
+        return  res.status(200).json(planetsRes);
     }
     catch(err){
         console.log(err);
