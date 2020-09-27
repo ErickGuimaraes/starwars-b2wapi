@@ -24,7 +24,7 @@ app.get("/", (req, res) =>
   `<br>     "climate": "Climate",`+
   `<br>     "terrain": "Terrain"`+
   `<br> }</pre>`+
-  `<br> Search Feild: Name (/planets/?name:NameToFind)`
+  `<br> Search Feild: Name (/planets/?name=NameToFind)`
   );
 
 });
