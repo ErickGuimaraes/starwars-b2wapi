@@ -12,6 +12,8 @@ Desenvolvimento para o desafio da B2W Digital.
 
 ➤ [Mongoose](https://mongoosejs.com/)
 
+➤ [Mocha](https://mochajs.org/)
+
 ## 💻 Como Rodar 
 ```bash
 # clone o repositório.
@@ -20,8 +22,12 @@ git clone https://github.com/ErickGuimaraes/starwarsb2wapi
 cd starwarsb2wapi
 # inicie com o yarn para instalar os pacotes.
 yarn
+# para iniciar a aplicação em modo de produção.
+yarn start
 # para iniciar a aplicação em desenvolvimento.
-yarn start dev
+yarn dev
+# para iniciar os teste automatizados da aplicação .
+yarn test
 ```
 
 ## API Rest:
@@ -69,6 +75,8 @@ JSON
 ‣ Buscar por ID
 
 ‣ Remover planeta
+
+‣ Testes
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
