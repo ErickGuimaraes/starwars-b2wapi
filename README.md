@@ -26,7 +26,7 @@ yarn
 yarn start
 # para iniciar a aplicação em desenvolvimento.
 yarn dev
-# para iniciar os teste automatizados da aplicação .
+# para iniciar os testes automatizados da aplicação .
 yarn test
 ```
 
