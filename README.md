@@ -27,7 +27,7 @@ yarn start
 # para iniciar a aplicação em desenvolvimento.
 yarn dev
 # para iniciar os teste automatizados da aplicação .
-yarn dev
+yarn test
 ```
 
 ## API Rest:
