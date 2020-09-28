@@ -2,7 +2,7 @@ const configuration = require ("../config/index.js");
 const axios = require ("axios");
 const NotFoundError = require ("../errors/not-found-error.js")
 const ValidationError = require ("../errors/validation-error.js")
-const {planetModel, planetSchema} = require ("../model/planetModel.js")
+const {planetModel} = require ("../model/planetModel.js")
 
 
 async function getPlanetsService(planetQuery)

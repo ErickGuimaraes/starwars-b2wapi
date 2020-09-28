@@ -9,11 +9,13 @@ const planetSchema = mongoose.Schema(
       },
       climate: 
       { 
-        type: String 
+        type: String,
+        required: true
       },
       terrain: 
       { 
-        type: String 
+        type: String,
+        required: true 
       },
       film_appearances:
       {
