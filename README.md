@@ -58,7 +58,7 @@ name (obrigatorio), climate(obrigatorio), terrain (obrigatorio)
 #### FORMATO DA RESPOSTA
 JSON
 #### PARAMS
-name(obrigatorio), climate(obrigatorio), terrain(obrigatorio)
+name(obrigatorio), climate, terrain
 
 ### ‣ DELETE /planets/:id
 #### FORMATO DA RESPOSTA
@@ -75,6 +75,8 @@ JSON
 ‣ Buscar por ID
 
 ‣ Remover planeta
+
+‣ Testes
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
