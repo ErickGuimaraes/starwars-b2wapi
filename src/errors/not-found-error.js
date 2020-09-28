@@ -1,10 +1,10 @@
 class NotFoundError extends Error {
-    constructor({ message, statusCode }) {
-      super(message)
-      this.name = 'NotFoundError'
-      this.statusCode = statusCode
-      Error.captureStackTrace(this, this.constructor)
-    }
+  constructor({ message, statusCode }) {
+    super(message);
+    this.name = "NotFoundError";
+    this.statusCode = statusCode;
+    Error.captureStackTrace(this, this.constructor);
   }
-  
-module.exports = NotFoundError
+}
+
+module.exports = NotFoundError;

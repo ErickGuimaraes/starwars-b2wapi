@@ -1,11 +1,16 @@
-const express = require("express")
-const {getPlanets, createPlanet, findById, deletePlanet} = require ( "../controllers/planetsController.js");
+const express = require("express");
+const {
+  getPlanets,
+  createPlanet,
+  findById,
+  deletePlanet,
+} = require("../controllers/planetsController.js");
 
 const router = express.Router();
 
 router.get("/planets", getPlanets);
 
-router.post("/planets/:ID", findById)
+router.post("/planets/:ID", findById);
 
 router.put("/planets", createPlanet);
 
