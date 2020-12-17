@@ -14,7 +14,7 @@
     "tags":[
        {
           "name":"Planets",
-          "description":"API for Star Wars Planets in the system"
+          "description":"API for Star Wars Planets in the API"
        }
     ],
     "schemes":[
@@ -33,12 +33,12 @@
               "tags":[
                  "Planets"
               ],
-              "summary":"Get all planets in system",
+              "summary":"Get all planets in API",
               "responses":{
                  "200":{
                     "description":"OK",
                     "schema":{
-                       "$ref":"#/definitions/Planet"
+                       "$ref":"#/definitions/PlanetAnswer"
                     }
                  }
               }
@@ -47,7 +47,8 @@
             "tags":[
                "Planets"
             ],
-            "description":"Create new Planet in system",
+            "summary":"Create new Planets in API",
+            "description":"Create new Planet in API",
             "parameters":[
                {
                   "name":"New Planet to Creat",
@@ -65,13 +66,78 @@
                "200":{
                   "description":"New Planet is created",
                   "schema":{
-                     "$ref":"#/definitions/Planet"
+                     "$ref":"#/definitions/PlanetAnswer"
                   }
                }
             }
-         }
+        }
+        },
+         
+        "/planets/{ID}":{
+
+        "parameters":[
+           {
+               "name":"ID",
+               "in":"path",
+               "description":"Id of the planet",
+               "type":"string"
+            }],
+            "get":{
+                  "tags":[
+                     "Planet"
+                  ],
+            "summary":"Get a planet by id in API",
+            "responses":{
+               "200":{
+                "description":"OK",
+                "schema":{
+                    "$ref":"#/definitions/PlanetAnswer"
+                }
+            }
         }
      },
+     "delete":{
+        "tags":[
+           "Planet"
+        ],
+  "summary":"Get a planet by id in API",
+  "responses":{
+     "200":{
+      "description":"OK",
+      "schema":{
+          "$ref":"#/definitions/PlanetAnswer"
+      }
+  }
+}
+}
+
+    },
+    "/planets/?name={PlanetName}":{
+
+        "parameters":[
+           {
+               "name":"PlanetName",
+               "in":"path",
+               "description":"Name of the planet",
+               "type":"string"
+            }],
+            "get":{
+                  "tags":[
+                     "Planet"
+                  ],
+            "summary":"Get a planet by name in API",
+            "responses":{
+               "200":{
+                "description":"OK",
+                "schema":{
+                    "$ref":"#/definitions/PlanetAnswer"
+                }
+            }
+        }
+     }
+    }
+    
+    },
 
      "definitions":{
         "Planet":{
@@ -94,7 +160,42 @@
 
              }
            }
-        }
+        },
+        "PlanetAnswer":{
+
+
+            "required":[
+                "id",
+               "name",
+               "climate",
+               "terrain",
+               "film_appearances"
+            ],
+            "properties":{
+
+                "id":
+                {
+                    "type":"string"
+                },
+ 
+               "name":{
+                  "type":"string"
+               
+               },
+               "climate":{
+                  "type":"string"
+               },
+               "terrain":{
+                 "type":"string"
+ 
+              },
+              "film_appearances":
+              {
+                  "type":"number"
+              }
+            }
+         }
     }
+
 }
 

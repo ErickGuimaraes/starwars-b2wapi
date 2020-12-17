@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/planets", getPlanets);
 
-router.post("/planets/:ID", findById);
+router.get("/planets/:ID", findById);
 
 router.post("/planets", createPlanet);
 
