@@ -12,7 +12,7 @@ router.get("/planets", getPlanets);
 
 router.post("/planets/:ID", findById);
 
-router.put("/planets", createPlanet);
+router.post("/planets", createPlanet);
 
 router.delete("/planets/:ID", deletePlanet);
 

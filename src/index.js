@@ -2,6 +2,8 @@ const express = require("express");
 const configuration = require("./config/index.js");
 const planetsRoutes = require("./routes/planetsRoutes.js");
 const dbConnection = require("./db/index.js");
+const swaggerUI = require('swagger-ui-express'), 
+      swaggerDocument = require('./Swagger.json');
 
 const app = express();
 
@@ -24,6 +26,8 @@ app.get("/", (req, res) => {
       `<br> (GET)Search Feild: Name (/planets/?name=NameToFind)`
   );
 });
+
+app.use('/starWarsApi', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.listen(configuration.PORT, (req, res) => {
   console.log("Local Server Running");

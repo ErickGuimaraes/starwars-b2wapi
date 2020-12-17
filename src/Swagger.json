@@ -1,0 +1,100 @@
+{
+    "swagger":"2.0",
+    "info":{
+       "version":"1.0.0",
+       "title":"Star Wars Planets Api",
+       "description":"B2w star wars planet dev tes api",
+       "license":{
+          "name":"MIT",
+          "url":"https://opensource.org/licenses/MIT"
+       }
+    },
+    "host":"localhost:3000",
+    "basePath":"/",
+    "tags":[
+       {
+          "name":"Planets",
+          "description":"API for Star Wars Planets in the system"
+       }
+    ],
+    "schemes":[
+       "http"
+    ],
+    "consumes":[
+       "application/json"
+    ],
+    "produces":[
+       "application/json"
+    ],
+
+    "paths":{
+        "/planets":{
+           "get":{
+              "tags":[
+                 "Planets"
+              ],
+              "summary":"Get all planets in system",
+              "responses":{
+                 "200":{
+                    "description":"OK",
+                    "schema":{
+                       "$ref":"#/definitions/Planet"
+                    }
+                 }
+              }
+           },
+           "post":{
+            "tags":[
+               "Planets"
+            ],
+            "description":"Create new Planet in system",
+            "parameters":[
+               {
+                  "name":"New Planet to Creat",
+                  "in":"body",
+                  "description":"planet",
+                  "schema":{
+                     "$ref":"#/definitions/Planet"
+                  }
+               }
+            ],
+            "produces":[
+               "application/json"
+            ],
+            "responses":{
+               "200":{
+                  "description":"New Planet is created",
+                  "schema":{
+                     "$ref":"#/definitions/Planet"
+                  }
+               }
+            }
+         }
+        }
+     },
+
+     "definitions":{
+        "Planet":{
+           "required":[
+              "name",
+              "climate",
+              "terrain"
+           ],
+           "properties":{
+
+              "name":{
+                 "type":"string"
+              
+              },
+              "climate":{
+                 "type":"string"
+              },
+              "terrain":{
+                "type":"string"
+
+             }
+           }
+        }
+    }
+}
+
