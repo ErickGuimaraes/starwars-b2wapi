@@ -9,9 +9,28 @@ const chai = require("chai");
 
 const { planetModel } = require("../src/model/planetModel.js");
 
+before(function (done) {
+
+  function clearCollections() {
+    for (var collection in mongoose.connection.collections) {
+      mongoose.connection.collections[collection].remove(function() {});
+    }
+    return done();
+  }
+
+  if (mongoose.connection.readyState === 0) {
+    mongoose.connect(config.test.db, function (err) {
+      if (err) throw err;
+      return clearCollections();
+    });
+  } else {
+    return clearCollections();
+  }
+});
+
 describe("Get", () => {
   context("Conection with api Main Page", () => {
-    let res;
+
     before(async () => {
       res = await request(app).get("/");
     });
@@ -21,7 +40,7 @@ describe("Get", () => {
     });
   });
   context("Conection planets page", () => {
-    let res;
+
     before(async () => {
       res = await request(app).get("/planets");
     });
@@ -41,13 +60,15 @@ describe("Get", () => {
     });
   });
 });
-describe("Put /Planets", () => {
-  context("when all fields was given", () => {
-    const fixture = { name: "Tatooine", climate: "arid", terrain: "desert" };
 
-    before(async () => {
-      res = await planetModel.collection.drop();
-      res = await testDb.put("/planets").send(fixture);
+describe("Post /Planets", () => {
+  context("when all fields were given", () => {
+    const fixture = { name: "Tatooine", climate: "arid", terrain: "desert" };
+    let res;
+
+   before(async () => {
+
+      res = await testDb.post("/planets").send(fixture);
     });
 
     it("should return 201 (Created)", () => {
@@ -56,20 +77,21 @@ describe("Put /Planets", () => {
 
     it("should return created planet", () => {
       const finalFixture = {
+        film_appearances: res.body.film_appearances,
         _id: res.body._id,
         name: "Tatooine",
         climate: "arid",
         terrain: "desert",
-        film_appearances: res.body.film_appearances,
       };
       chai.expect(res.body).to.be.eql(finalFixture);
     });
   });
-  context("when all fields was given (Repeated)", () => {
+  context("when all fields were given (Repeated)", () => {
     const fixture = { name: "Tatooine", climate: "arid", terrain: "desert" };
+    let res;
 
     before(async () => {
-      res = await testDb.put("/planets").send(fixture);
+      res = await testDb.post("/planets").send(fixture);
     });
 
     it("should return 500 (Internal Server Error)", () => {
@@ -86,9 +108,10 @@ describe("Put /Planets", () => {
   });
   context("when wrong field name was given )", () => {
     const fixture = { name3: "Tatooine", climate: "arid", terrain: "desert" };
+    let res;
 
     before(async () => {
-      res = await testDb.put("/planets").send(fixture);
+      res = await testDb.post("/planets").send(fixture);
     });
 
     it("should return 500 (Internal Server Error)", () => {
@@ -106,9 +129,10 @@ describe("Put /Planets", () => {
   });
   context("when wrong field climate was given )", () => {
     const fixture = { name: "Tatooine2", climate43: "arid", terrain: "desert" };
+    let res;
 
     before(async () => {
-      res = await testDb.put("/planets").send(fixture);
+      res = await testDb.post("/planets").send(fixture);
     });
 
     it("should return 500 (Internal Server Error)", () => {
@@ -125,9 +149,10 @@ describe("Put /Planets", () => {
   });
   context("when wrong field terrain was given )", () => {
     const fixture = { name: "Tatooine3", climate: "arid", terrain32: "desert" };
+    let res;
 
     before(async () => {
-      res = await testDb.put("/planets").send(fixture);
+      res = await testDb.post("/planets").send(fixture);
     });
 
     it("should return 500 (Internal Server Error)", () => {
@@ -147,12 +172,13 @@ describe("Get /Planets", () => {
   context("creating new planet", () => {
     const planetFixture = {
       name: "TatooineTest",
-      climate: "arid, ho",
+      climate: "arid, hot",
       terrain: "desert, cold",
     };
+    let res;
 
     before(async () => {
-      res = await testDb.put("/planets").send(planetFixture);
+      res = await testDb.post("/planets").send(planetFixture);
       res = await request(app).get("/planets");
     });
 
@@ -164,11 +190,14 @@ describe("Get /Planets", () => {
 });
 
 describe("Post /Planets/:ID", () => {
+  let id;
   context("when ID is valid", () => {
+    let res;
     before(async () => {
-      res = await request(app).get("/planets");
+      res = await request(app).get("/planets")
+      res = await testDb.get(`/planets/${res.body[0]._id}`);
 
-      res = await request(app).post(`/planets/${res.body[0]._id}`);
+      //res = await request(app).post(`/planets/${res.body[0]._id}`);
     });
 
     it("should return 200 (OK)", () => {
@@ -187,8 +216,9 @@ describe("Post /Planets/:ID", () => {
     });
   });
   context("when ID is Not valid", () => {
+    let res;
     before(async () => {
-      res = await request(app).post(`/planets/NOTVALIDIDOFPLANET`);
+      res = await request(app).get(`/planets/NOTVALIDIDOFPLANET`);
     });
 
     it("should return 500 (Internat Server Error)", () => {
@@ -207,6 +237,7 @@ describe("Post /Planets/:ID", () => {
 
 describe("Get /Planets/?name=PlanetToFind", () => {
   context("searching for a planet", () => {
+    let res;
     before(async () => {
       res = await request(app).get("/planets/?name=Tatooine");
     });
@@ -228,6 +259,7 @@ describe("Get /Planets/?name=PlanetToFind", () => {
     });
   });
   context("searching for a planet", () => {
+    let res;
     before(async () => {
       res = await request(app).get("/planets/?name=NomExistentPlanet");
     });
@@ -243,6 +275,7 @@ describe("Get /Planets/?name=PlanetToFind", () => {
 });
 
 describe("Delete /Planets/:ID", () => {
+  let res;
   context("when ID is valid", () => {
     before(async () => {
       res = await request(app).get("/planets");
@@ -259,6 +292,7 @@ describe("Delete /Planets/:ID", () => {
     });
 
     context("when ID is valid but dont exists", () => {
+      let res;
       before(async () => {
         res = await request(app).delete(`/planets/111111111111111111111111`);
       });
@@ -273,6 +307,7 @@ describe("Delete /Planets/:ID", () => {
     });
   });
   context("when ID is Not valid ", () => {
+    let res;
     before(async () => {
       res = await request(app).delete(`/planets/NOTVALIDID`);
     });
