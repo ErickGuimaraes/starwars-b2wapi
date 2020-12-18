@@ -197,7 +197,6 @@ describe("Post /Planets/:ID", () => {
       res = await request(app).get("/planets")
       res = await testDb.get(`/planets/${res.body[0]._id}`);
 
-      //res = await request(app).post(`/planets/${res.body[0]._id}`);
     });
 
     it("should return 200 (OK)", () => {
