@@ -40,14 +40,14 @@ async function createPlanetService(data) {
       ? { ...data, film_appearances: swapi.data.results[0].films.length }
       : { ...data, film_appearances: 0 };
 
-  const savePlantet = planetModel.create(planetUpdated);
+  const savePlanet = planetModel.create(planetUpdated);
 
-  if (!savePlantet) {
+  if (!savePlanet) {
     throw new ValidationError({
       message: `Planet ${name} has already been created`,
     });
   }
-  return savePlantet;
+  return savePlanet;
 }
 
 async function findByIdService(ID) {

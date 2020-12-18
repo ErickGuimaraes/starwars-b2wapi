@@ -183,8 +183,8 @@ describe("Get /Planets", () => {
     });
 
     it("should return list of planets", () => {
-      const planestList = res.body;
-      chai.expect(planestList).to.have.length(2);
+      const planetsList = res.body;
+      chai.expect(planetsList).to.have.length(2);
     });
   });
 });
