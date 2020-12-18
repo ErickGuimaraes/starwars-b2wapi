@@ -4,15 +4,17 @@ Desenvolvimento para o desafio da B2W Digital.
 
 ## ⚙️ Tecnologias
 
-➤ [NodeJS](https://nodejs.org/en/)
+➤ [NodeJS](https://nodejs.org/en/) (V. 13.11.0)
 
-➤ [Express](https://expressjs.com/pt-br/)
+➤ [Express](https://expressjs.com/pt-br/) (V. 4.17.1)
 
-➤ [Axios](https://github.com/axios/axios)
+➤ [Axios](https://github.com/axios/axios) (V. 0.19.2)
 
-➤ [Mongoose](https://mongoosejs.com/)
+➤ [Mongoose](https://mongoosejs.com/) (V. 5.10.6)
 
-➤ [Mocha](https://mochajs.org/)
+➤ [Mocha](https://mochajs.org/) (V. 8.1.3)
+
+➤ [Swagger](https://swagger.io/) (V. 4.1.5)
 
 ## 💻 Como Rodar 
 ```bash
@@ -28,6 +30,8 @@ yarn start
 yarn dev
 # para iniciar os testes automatizados da aplicação .
 yarn test
+# para acessar as rotas da aplicação.
+http://localhost:3000/starwarsapi/
 ```
 
 ## API Rest:
@@ -75,6 +79,10 @@ JSON
 ‣ Buscar por ID
 
 ‣ Remover planeta
+
+‣ Linguagem Node.JS
+
+‣ Banco de Dados MongoDB
 
 ‣ Testes
 
