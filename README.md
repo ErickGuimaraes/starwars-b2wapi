@@ -54,7 +54,7 @@ JSON
 #### PARAMS
 name (obrigatorio), climate(obrigatorio), terrain (obrigatorio)
 
-### ‣ PUT /planets/:id
+### ‣ GET /planets/:id
 #### FORMATO DA RESPOSTA
 JSON
 #### PARAMS
