@@ -35,8 +35,10 @@ git clone https://github.com/ErickGuimaraes/starwarsb2wapi
 cd starwarsb2wapi
 # para iniciar o programa usando docker digite, após certifica-se que o docker esteja instalado.
 docker-compose up
-#Aguardar a seguinte mensagem de conexão do servidor, pois pode levar um tempinho
+# aguardar a seguinte mensagem de conexão do servidor, pois pode levar um tempinho
 starwarsapi   | Connected to Dev production
+# se desejar parar a aplicação, basta digitar.
+docker-compose down
 
 # para acessar as rotas da aplicação.
 http://localhost:3000/starwarsapi/
