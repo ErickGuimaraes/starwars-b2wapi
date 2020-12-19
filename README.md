@@ -39,7 +39,6 @@ docker-compose up
 starwarsapi   | Connected to Dev production
 # se desejar parar a aplicação, basta digitar.
 docker-compose down
-
 # para acessar as rotas da aplicação.
 http://localhost:3000/starwarsapi/
 
