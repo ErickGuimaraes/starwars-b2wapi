@@ -2,6 +2,7 @@
 
 Desenvolvimento para o desafio da B2W Digital. 
 
+
 ## ⚙️ Tecnologias
 
 ➤ [NodeJS](https://nodejs.org/en/) (V. 13.11.0)
@@ -23,17 +24,24 @@ Desenvolvimento para o desafio da B2W Digital.
 
 ## 💻 Como Rodar 
 ```bash
+#para iniciar os testes automatizados da aplicação, certifique-se que esteja com o mongo localfuncionando e digite.
+yarn test
+
+#para a aplicação
+
 # clone o repositório.
 git clone https://github.com/ErickGuimaraes/starwarsb2wapi
 # entre na pasta do projeto
 cd starwarsb2wapi
-# para iniciar o programa usando docker, após a instalação do mesmo.
+# para iniciar o programa usando docker digite, após certifica-se que o docker esteja instalado.
 docker-compose up
+#Aguardar a seguinte mensagem de conexão do servidor, pois pode levar um tempinho
+starwarsapi   | Connected to Dev production
 
 # para acessar as rotas da aplicação.
 http://localhost:3000/starwarsapi/
 
-###  OU
+      ###  OU  ###
 
 # inicie com o yarn para instalar os pacotes.
 yarn
@@ -41,13 +49,14 @@ yarn
 yarn start
 # para iniciar a aplicação em desenvolvimento.
 yarn dev
-# para iniciar os testes automatizados da aplicação .
-yarn test
 # para acessar as rotas da aplicação.
 http://localhost:3000/starwarsapi/
 ```
 
 ## API Rest:
+
+### ‣ DOCUMENTAÇÃO
+http://localhost:3000/starwarsapi/
 
 ### ‣ GET /planets 
 #### FORMATO DA RESPOSTA
