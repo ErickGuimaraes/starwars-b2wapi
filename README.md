@@ -41,7 +41,7 @@ starwarsapi   | Connected to Dev production
 # para acessar as rotas da aplicação.
 http://localhost:3000/starwarsapi/
 
-      ###  OU  ###
+      ###  OU (PARA RODAR SEM DOCKER)  ###
 
 # certifique-se que esteja com o mongo local funcionando.
 # inicie com o yarn para instalar os pacotes.
