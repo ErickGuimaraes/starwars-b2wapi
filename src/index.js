@@ -14,17 +14,7 @@ app.use(planetsRoutes);
 
 app.get("/", (req, res) => {
   res.send(
-    `Star wars Api Developed By Erick Oliveira` +
-      `<br> To See all planets go to /Planets with a Get request` +
-      `<br> To See a specific planet go to /planet/ID with a Get request` +
-      `<br> To Delete a planet go to /Planets/ID  with a Delete request` +
-      `<br> To Create a planet send a Post request to /planet/ and send a Json with` +
-      `<br> <pre>{` +
-      `<br>     name: "Name"` +
-      `<br>     climate: "Climate"` +
-      `<br>     terrain: "Terrain"` +
-      `<br> }</pre>` +
-      `<br> (GET)Search Feild: Name (/planets/?name=NameToFind)`
+    `<h1>To see de documentation go to  <a href="http://localhost:3000/starwarsapi/">Star wars API by Erick Oliveira</a> `
   );
 });
 

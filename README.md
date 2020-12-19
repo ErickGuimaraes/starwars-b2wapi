@@ -16,12 +16,25 @@ Desenvolvimento para o desafio da B2W Digital.
 
 ➤ [Swagger](https://swagger.io/) (V. 4.1.5)
 
+➤ [Docker](https://www.docker.com/) (V. 20.10.0)
+
+➤ [Docker-Compose](https://docs.docker.com/compose/install/) (1.27.4)
+
+
 ## 💻 Como Rodar 
 ```bash
 # clone o repositório.
 git clone https://github.com/ErickGuimaraes/starwarsb2wapi
 # entre na pasta do projeto
 cd starwarsb2wapi
+# para iniciar o programa usando docker.
+docker-compose up
+
+# para acessar as rotas da aplicação.
+http://localhost:3000/starwarsapi/
+
+###  OU
+
 # inicie com o yarn para instalar os pacotes.
 yarn
 # para iniciar a aplicação em modo de produção.
