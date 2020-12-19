@@ -1,13 +1,35 @@
 version: '3.7'
 services:
-  mongodb_container:
+  starwarapi:
+    container_name: starwarsapi
+    environment: 
+      - NODE_ENV=production
+      - DB_CONNECTION=mongodb://mongo:27017/planets
+      - PORT=3000
+      - API_URL=https://swapi.dev/api/
+    build: '.'
+    volumes: 
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on: 
+      - mongo
+    networks:
+      - app-connect
+    ports: 
+      - '3000:3000'
+  mongo:
     image: mongo
-    container_name:  'mongo-container'
+    container_name:  'mongo'
     environment: 
       - MONGO_INITDB_DATABASE=planets
+    networks:
+      - app-connect
     ports:
-      - '47017'
+      - '27017:27017'
     volumes:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./mongo-volume:/data/db
 
+networks: 
+  app-connect:
+    driver: bridge

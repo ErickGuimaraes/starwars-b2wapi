@@ -4,6 +4,9 @@ const NotFoundError = require("../errors/not-found-error.js");
 const ValidationError = require("../errors/validation-error.js");
 const { planetModel } = require("../model/planetModel.js");
 
+if(process.env.NODE_ENV != 'production')
+  require("dotenv").config()
+
 async function getPlanetsService(planetQuery) {
   const queryParam = {};
 
@@ -32,7 +35,7 @@ async function createPlanetService(data) {
   }
 
   const swapi = await axios.get(
-    `${configuration.API_URL}planets/?search=${name}`
+    `${process.env.API_URL}planets/?search=${name}`
   );
 
   const planetUpdated =

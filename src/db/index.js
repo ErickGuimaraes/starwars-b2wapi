@@ -1,13 +1,17 @@
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-const configuration = require(`../config/index.js`);
 
-var DbConfigConnection = configuration.DB_TEST_CONNECTION;
-var DbConnectedText = "Test Database";
-if (process.argv[2] == "dev") {
-  DbConfigConnection = configuration.DB_CONNECTION;
+const mongoose = require("mongoose");
+if(process.env.NODE_ENV!='production')
+    require("dotenv").config();
+
+var DbConfigConnection = "";
+var DbConnectedText = "";
+console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV == "dev") {
   DbConnectedText = "Dev Database";
+}else if (process.argv[2] == "production") {
+  DbConnectedText = "Dev production";
 }
+DbConfigConnection = process.env.DB_CONNECTION;
 
 const dbConnection = mongoose.connect(
   DbConfigConnection,

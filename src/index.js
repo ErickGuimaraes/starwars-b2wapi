@@ -1,10 +1,11 @@
 const express = require("express");
-const configuration = require("./config/index.js");
+
 const planetsRoutes = require("./routes/planetsRoutes.js");
 const dbConnection = require("./db/index.js");
 const swaggerUI = require('swagger-ui-express'), 
       swaggerDocument = require('./Swagger.json');
-
+if(process.env.NODE_ENV!='production')
+  require("dotenv").config();
 const app = express();
 
 app.use(express.json());
@@ -29,7 +30,7 @@ app.get("/", (req, res) => {
 
 app.use('/starWarsApi', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-app.listen(configuration.PORT, (req, res) => {
+app.listen(process.env.PORT, (req, res) => {
   console.log("Local Server Running");
 });
 
