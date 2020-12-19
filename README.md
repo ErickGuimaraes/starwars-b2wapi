@@ -27,7 +27,7 @@ Desenvolvimento para o desafio da B2W Digital.
 git clone https://github.com/ErickGuimaraes/starwarsb2wapi
 # entre na pasta do projeto
 cd starwarsb2wapi
-# para iniciar o programa usando docker.
+# para iniciar o programa usando docker, após a instalação do mesmo.
 docker-compose up
 
 # para acessar as rotas da aplicação.
