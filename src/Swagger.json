@@ -103,7 +103,7 @@
                "200":{
                   "description":"OK",
                   "schema":{
-                     "$ref":"#/definitions/PlanetAnswer"
+                     "$ref":"#/definitions/DeleteModel"
                   }
                }
             }
@@ -127,7 +127,7 @@
                "200":{
                   "description":"OK",
                   "schema":{
-                     "$ref":"#/definitions/DeleteModel"
+                     "$ref":"#/definitions/PlanetAnswer"
                   }
                }
             }
@@ -181,9 +181,15 @@
       },
       "DeleteModel":{
          "properties":{
-            "n": "number",
-            "ok": "number",
-            "deletedCount": "number"
+            "n":{
+               "type":"number"
+            },
+            "ok":{
+               "type":"number"
+            },
+            "deletedCount":{
+               "type":"number"
+            }
             
          }
       }
