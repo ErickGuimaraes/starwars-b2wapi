@@ -24,7 +24,7 @@ Desenvolvimento para o desafio da B2W Digital.
 
 ## 💻 Como Rodar 
 ```bash
-#para iniciar os testes automatizados da aplicação, certifique-se que esteja com o mongo localfuncionando e digite.
+#para iniciar os testes automatizados da aplicação, certifique-se que esteja com o mongo local funcionando e digite.
 yarn test
 
 #para a aplicação
@@ -43,6 +43,7 @@ http://localhost:3000/starwarsapi/
 
       ###  OU  ###
 
+# certifique-se que esteja com o mongo local funcionando.
 # inicie com o yarn para instalar os pacotes.
 yarn
 # para iniciar a aplicação em modo de produção.
